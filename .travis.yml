@@ -10,7 +10,7 @@ psql:
   database: drupal
   username: postgres
 
-env
+env:
  - RUN_TEST_GROUPS=Tracker
  - RUN_TEST_GROUPS=SimpleTest
 
