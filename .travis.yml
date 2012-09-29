@@ -1,7 +1,10 @@
 language: php
 
+notifications:
+  email: false
+
 php:
-  - 5.4
+  - 5.3
 
 mysql:
   database: drupal
