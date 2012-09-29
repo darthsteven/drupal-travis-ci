@@ -6,19 +6,18 @@ notifications:
 php:
   - 5.4
 
-mysql:
+psql:
   database: drupal
-  username: root
-  encoding: utf8
+  username: postgres
 
 before_script:
- - mysql -e 'create database drupal;'
+ - psql -c 'create database drupal;' -U postgres
  - pyrus channel-discover pear.drush.org
  - pyrus install drush/drush
  - phpenv rehash
  - drush dl --yes drupal
  - cd drupal-*
- - drush si minimal --db-url=mysql://root:@localhost/drupal --yes
+ - drush si minimal --db-url=pgsql://postgres:@localhost/drupal --yes
  - drush en --yes simpletest
  - drush cc all
  - drush runserver --server=builtin 8080 &
