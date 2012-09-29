@@ -12,6 +12,7 @@ psql:
 
 env
  - RUN_TEST_GROUPS=Tracker
+ - RUN_TEST_GROUPS=SimpleTest
 
 before_script:
  - psql -c 'create database drupal;' -U postgres
