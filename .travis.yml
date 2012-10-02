@@ -16,10 +16,10 @@ mysql:
   encoding: utf8
 
 env:
- - DB_TYPE=mysql DB_USER=root RUN_TEST_GROUPS=Tracker
- - DB_TYPE=mysql DB_USER=root RUN_TEST_GROUPS=SimpleTest
- - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=Tracker
- - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=SimpleTest
+ - DB_TYPE=mysql DB_USER=root RUN_TEST_GROUPS=Update
+ - DB_TYPE=mysql DB_USER=root RUN_TEST_GROUPS=File
+ - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=Update
+ - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=File
 
 before_script:
  - sh -c "if [ '$DB_TYPE' = 'pgsql' ]; then psql -c 'create database drupal;' -U postgres; fi"
