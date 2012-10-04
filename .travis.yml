@@ -37,6 +37,8 @@ before_script:
  - curl 'http://ftp.drupal.org/files/projects/drush-7.x-5.7.tar.gz' > $HOME/drush.tar.gz
  - tar -xf $HOME/drush.tar.gz
  - export PATH="$PATH:$HOME/drush/drush"
+ - echo "$PATH"
+ - $HOME/drush/drush --version
  - drush --version
 # - phpenv rehash
 # - drush dl --yes drupal
