@@ -19,7 +19,7 @@ env:
 ## - DB_TYPE=mysql DB_USER=root RUN_TEST_GROUPS=Update
  - DB_TYPE=mysql DB_USER=root RUN_TEST_GROUPS=File
 ## - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=Update
-# - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=File
+ - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=File
 
 before_script:
  - WORKSPACE=`pwd`
@@ -39,15 +39,15 @@ before_script:
  - tar -xzf $WORKSPACE/drush.tar.gz
  - alias drush="$WORKSPACE/drush/drush"
  - drush --version
-# - phpenv rehash
-# - drush dl --yes drupal
-# - cd drupal-*
-# - drush si minimal --db-url="$DB_TYPE://$DB_USER:@localhost/drupal" --yes
-# - drush en --yes simpletest
-# - drush cc all
-# - drush runserver --server=builtin 8080 &
-# - sleep 4
-# - drush vset --yes simpletest_verbose FALSE
+ - phpenv rehash
+ - drush dl --yes drupal
+ - cd drupal-*
+ - drush si minimal --db-url="$DB_TYPE://$DB_USER:@localhost/drupal" --yes
+ - drush en --yes simpletest
+ - drush cc all
+ - drush runserver --server=builtin 8080 &
+ - sleep 4
+ - drush vset --yes simpletest_verbose FALSE
 
 #script: php ./scripts/run-tests.sh --php /home/vagrant/.phpenv/shims/php --url http://127.0.0.1:8080 $RUN_TEST_GROUPS
-#script: drush test-run --uri="http://127.0.0.1:8080" $RUN_TEST_GROUPS
+script: drush test-run --uri="http://127.0.0.1:8080" $RUN_TEST_GROUPS
