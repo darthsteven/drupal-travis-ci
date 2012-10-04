@@ -38,6 +38,7 @@ before_script:
  - tar -xf $HOME/drush.tar.gz
  - export PATH="$PATH:$HOME/drush/drush"
  - echo "$PATH"
+ - ls -l $HOME
  - $HOME/drush/drush --version
  - drush --version
 # - phpenv rehash
