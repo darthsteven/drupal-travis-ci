@@ -34,11 +34,9 @@ before_script:
  - echo "extension=apc.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
  - phpenv rehash
 # Install Drush.
- - curl 'http://ftp.drupal.org/files/projects/drush-7.x-5.7.tar.gz' > ./drush.tar.gz
- - tar -xf ./drush.tar.gz
- - export PATH="$PATH:./drush/drush"
- - echo "$PATH"
- - ls -l
+ - curl 'http://ftp.drupal.org/files/projects/drush-7.x-5.7.tar.gz' > $HOME/drush.tar.gz
+ - tar -xf $HOME/drush.tar.gz
+ - export PATH="$PATH:$HOME/drush/drush"
  - drush --version
 # - phpenv rehash
 # - drush dl --yes drupal
