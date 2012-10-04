@@ -54,13 +54,6 @@ before_script:
  - drush runserver --server=builtin 8080 &
  - sleep 4
  - drush vset --yes simpletest_verbose FALSE
- - echo "--------------------------------------"
- - echo ""
- - echo ""
- - echo "Running test groups: $RUN_TEST_GROUPS"
- - echo ""
- - echo ""
- - echo "--------------------------------------"
 
 #script: php ./scripts/run-tests.sh --php /home/vagrant/.phpenv/shims/php --url http://127.0.0.1:8080 $RUN_TEST_GROUPS
 script: drush test-run --uri="http://127.0.0.1:8080" $RUN_TEST_GROUPS
