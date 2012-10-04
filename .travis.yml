@@ -42,7 +42,7 @@ before_script:
 # Apply a patch so that Drush returns an error code on failure.
 # See:
  - cd drush
- - curl 'http://drupal.org/files/drush-1802948-non-zero-test-exit.patch' | git apply -
+ - curl 'http://drupal.org/files/drush-1802948-non-zero-test-exit_0.patch' | git apply --verbose -
  - cd ..
 # Now download and install a Drupal.
  - phpenv rehash
