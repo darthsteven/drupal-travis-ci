@@ -16,10 +16,10 @@ mysql:
   encoding: utf8
 
 env:
-# - DB_TYPE=mysql DB_USER=root RUN_TEST_GROUPS=Update
+## - DB_TYPE=mysql DB_USER=root RUN_TEST_GROUPS=Update
  - DB_TYPE=mysql DB_USER=root RUN_TEST_GROUPS=File
-# - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=Update
- - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=File
+## - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=Update
+# - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=File
 
 before_script:
 # Create a databae of the correct type.
@@ -34,9 +34,9 @@ before_script:
  - echo "extension=apc.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
  - phpenv rehash
 # Install Drush.
- - curl 'http://ftp.drupal.org/files/projects/drush-7.x-5.7.tar.gz' > /opt/drush.tar.gz
- - tar -xf /opt/drush.tar.gz
- - ln -s /opt/drush/drush /usr/bin/drush
+ - curl 'http://ftp.drupal.org/files/projects/drush-7.x-5.7.tar.gz' > ./drush.tar.gz
+ - tar -xf ./drush.tar.gz
+ - export PATH="$PATH:./drush/drush"
  - drush --version
 # - phpenv rehash
 # - drush dl --yes drupal
