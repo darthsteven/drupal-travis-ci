@@ -37,7 +37,7 @@ before_script:
 # Install Drush.
  - curl 'http://ftp.drupal.org/files/projects/drush-7.x-5.7.tar.gz' > $WORKSPACE/drush.tar.gz
  - tar -xzf $WORKSPACE/drush.tar.gz
- - export drush="$WORKSPACE/drush/drush"
+ - alias drush="$WORKSPACE/drush/drush"
  - drush --version
 # - phpenv rehash
 # - drush dl --yes drupal
