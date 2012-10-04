@@ -22,6 +22,7 @@ env:
 # - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=File
 
 before_script:
+ - WORKSPACE=`pwd`
 # Create a databae of the correct type.
  - sh -c "if [ '$DB_TYPE' = 'pgsql' ]; then psql -c 'create database drupal;' -U postgres; fi"
  - sh -c "if [ '$DB_TYPE' = 'mysql' ]; then mysql -e 'create database drupal;'; fi"
@@ -34,12 +35,11 @@ before_script:
  - echo "extension=apc.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
  - phpenv rehash
 # Install Drush.
- - curl 'http://ftp.drupal.org/files/projects/drush-7.x-5.7.tar.gz' > $HOME/drush.tar.gz
- - tar -xf $HOME/drush.tar.gz
- - export PATH="$PATH:$HOME/drush/drush"
- - echo "$PATH"
- - ls -l $HOME
- - $HOME/drush/drush --version
+ - curl 'http://ftp.drupal.org/files/projects/drush-7.x-5.7.tar.gz' > $WORKSPACE/drush.tar.gz
+ - tar -xfz $WORKSPACE/drush.tar.gz
+ - export PATH="$PATH:$WORKSPACE/drush/drush"
+ - ls -l $WORKSPACE
+ - $WORKSPACE/drush/drush --version
  - drush --version
 # - phpenv rehash
 # - drush dl --yes drupal
