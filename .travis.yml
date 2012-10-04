@@ -39,6 +39,12 @@ before_script:
  - tar -xzf $WORKSPACE/drush.tar.gz
  - alias drush="$WORKSPACE/drush/drush"
  - drush --version
+# Apply a patch so that Drush returns an error code on failure.
+# See:
+ - cd drush
+ - curl 'http://drupal.org/files/drush-1802948-non-zero-test-exit.patch' > git apply -
+ - cd ..
+# Now download and install a Drupal.
  - phpenv rehash
  - drush dl --yes drupal
  - cd drupal-*
