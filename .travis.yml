@@ -22,8 +22,10 @@ env:
  - DB_TYPE=pgsql DB_USER=postgres RUN_TEST_GROUPS=File
 
 before_script:
+# Create a databae of the correct type.
  - sh -c "if [ '$DB_TYPE' = 'pgsql' ]; then psql -c 'create database drupal;' -U postgres; fi"
  - sh -c "if [ '$DB_TYPE' = 'mysql' ]; then mysql -e 'create database drupal;'; fi"
+# Instal APC to make things go faster.
  - curl -o APC-3.1.10.tgz http://pecl.php.net/get/APC-3.1.10.tgz
  - tar -xzf APC-3.1.10.tgz
  - sh -c "cd APC-3.1.10 && phpize && ./configure && make && sudo make install && cd .."
@@ -31,17 +33,20 @@ before_script:
  - rm APC-3.1.10.tgz
  - echo "extension=apc.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
  - phpenv rehash
- - pyrus channel-discover pear.drush.org
- - pyrus install drush/drush
- - phpenv rehash
- - drush dl --yes drupal
- - cd drupal-*
- - drush si minimal --db-url="$DB_TYPE://$DB_USER:@localhost/drupal" --yes
- - drush en --yes simpletest
- - drush cc all
- - drush runserver --server=builtin 8080 &
- - sleep 4
- - drush vset --yes simpletest_verbose FALSE
+# Install Drush.
+ - curl 'http://ftp.drupal.org/files/projects/drush-7.x-5.7.tar.gz' > /opt/drush.tar.gz
+ - tar -xf /opt/drush.tar.gz
+ - ln -s /opt/drush/drush /usr/bin/drush
+ - drush --version
+# - phpenv rehash
+# - drush dl --yes drupal
+# - cd drupal-*
+# - drush si minimal --db-url="$DB_TYPE://$DB_USER:@localhost/drupal" --yes
+# - drush en --yes simpletest
+# - drush cc all
+# - drush runserver --server=builtin 8080 &
+# - sleep 4
+# - drush vset --yes simpletest_verbose FALSE
 
 #script: php ./scripts/run-tests.sh --php /home/vagrant/.phpenv/shims/php --url http://127.0.0.1:8080 $RUN_TEST_GROUPS
-script: drush test-run --uri="http://127.0.0.1:8080" $RUN_TEST_GROUPS
+#script: drush test-run --uri="http://127.0.0.1:8080" $RUN_TEST_GROUPS
